@@ -1,0 +1,31 @@
+//- ========================================================================
+//- List Box (list template)
+//- ========================================================================
+//- To do:
+//- 	- add flexbox to vertically center the buttons.
+//- ========================================================================
+mixin ListBox(vendor)
+
+	.panel.panel-default(style="border:solid 2px grey;")
+		.panel-body
+			.row
+				//- Vendor Image
+				.col-md-4
+					img.center-block(
+						src!= vendor.software.app_media[0]
+						style="max-height:220px;max-width:100%"
+					)
+				//- Software Name and Vendor Name and Cloud Trial Badge
+				.col-md-8
+					h1(style='overflow:hidden;text-overflow:ellipsis') #{vendor.software.app_name}
+
+					h4
+						<span style='overflow:hidden;text-overflow:ellipsis' class="label label-default">#{vendor.company_name}</span><span></span>
+
+					p(style="font-size:20px")  #{vendor.software.app_short_description}
+
+		.panel-footer.clearfix
+			a.btn.btn-default.pull-right(style=("margin-right:5px;min-width:15%") href="/"+vendor.software.app_path) <b>More details</b>
+
+			if vendor.software.ppc
+				a.btn.btn-success.pull-right(id=vendor.software.app_path + "-list-webbutton" style=("margin-right:5px;min-width:15%"), href=vendor.software.go_to_website, target="_blank") Visit Their Website

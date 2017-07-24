@@ -1,0 +1,19 @@
+extends layout.pug
+include mixins/ListTitle/ListTitle.pug
+include mixins/ListBox.pug
+
+//- Renders with data: {'vendorsWithTag':doc, 'tag':tagToQuery } from '/all-categories/:tagToQuery' route.
+prepend head
+	title #{moment().format('YYYY')} Best Structural Design Software - #{_.capitalize(tag)}
+	meta(name="description", content="Find the best structural engineering software for " + tag + ". Price, features, and reviews from other engineers.")
+
+block content
+	
+	//- Layout the page below
+	.container
+		.row
+			.col-md-12
+				+ListTitle(tag)
+				hr
+				each vendor in vendorsWithTag
+						+ListBox(vendor)

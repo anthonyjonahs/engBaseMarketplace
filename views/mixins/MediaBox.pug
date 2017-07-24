@@ -1,0 +1,45 @@
+mixin MediaBox(data)
+	
+	//-Either 1 img for non-paying customers, or img/vid carroussel for paying customers
+	.panel.panel-default(style="overflow:hidden")
+		.panel-heading
+			h1.panel-title Screenshots
+		.panel-body
+			//-Check if vendor is PPC customer
+			if data.software.ppc && data.software.app_media.length > 1
+				//-Top Level: where image is shown or vid is played
+				
+				//-Check if it is img
+				.row
+					.col-md-12(style="height:400px;")
+						
+						img.center-block(
+							src!= data.software.app_media[0],
+							style="width:auto;height:100%",
+							id="carousselTheatre"
+						)
+				br
+
+				//-Lower Level: thumbnails to select shit you wanna see bigger.
+					//-produce list from array
+				.row
+					.col-md-12
+						each imageUrl in data.software.app_media
+							.col-md-3.col-sm-3.col-xs-4
+								a.thumbnail(style="cursor:pointer")
+									img(src!=imageUrl, onclick="changeImage(event)")
+
+				
+			else
+				//- Vendor Screenshot
+				.col-md-12
+					img.center-block(
+						src!= data.software.app_media[0]
+						style="width:90%;"
+					)
+			script.
+				function changeImage(e){
+
+					document.getElementById("carousselTheatre").src=e.target.src;
+
+				};

@@ -1,0 +1,19 @@
+//- ===============================================================================
+//- Title Box (profile template)
+//- ===============================================================================
+//- To do:
+//- 	- restyle button so that it is centered.
+//- 	- Change "Software other eng. use:" from static to dynamic...eventually.
+//- ===============================================================================
+
+mixin ProfileCTABox(data)
+
+	unless data.software.ppc
+		.row
+			.col-md-12
+				.panel.panel-default
+					.panel-body.text-center
+						p
+							|There's a lot of great software out there.
+							|Let's go explore:
+						a.btn.btn-success.btn-lg#exploreButton(href="/#categories" style='min-width:50%') Explore

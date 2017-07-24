@@ -1,0 +1,66 @@
+//- ============================================================================================
+//- Layout:
+//- This is the main wrapper for all website content.
+//- ============================================================================================
+
+
+doctype html
+
+html
+	head
+		//- Block for subcomponents to set page title.
+		block title
+
+		//- Noindex for dev environments
+		unless process.env.NODE_ENV === 'production'
+			meta(name='robots' content='noindex, nofollow')
+
+		block head
+
+
+			//- Core head content. Make sure it is appended and NOT overwritten
+			//- (use "append head", NOT "block head").
+			meta(charset='utf-8')
+			meta(http-equiv='X-UA-Compatible', content='IE=edge')
+			meta(name='viewport', content='width=device-width, initial-scale=1')
+
+			link(rel='stylesheet', href='/css/bootstrap.min.css')
+			link(rel='stylesheet', href='/css/bootstrap-theme.min.css')
+			link(rel='stylesheet', href='/css/main.css')
+
+			//- GTM and Drift code for production
+			if process.env.NODE_ENV === 'production'
+				include includes/GTMHead.html
+				include includes/driftSnippet.html
+
+			//- Stuff for IE
+			// HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+			// WARNING: Respond.js doesn't work if you view the page via file://
+			//if lt IE 9
+				script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
+				script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+
+	body
+
+		//- GTM code for production
+		if process.env.NODE_ENV === 'production'
+			include includes/GTMBody.html
+
+		//-Include the general navbar
+		include includes/navbar.pug
+
+		block content
+
+		//- Include the general footer
+		include includes/footer.pug
+
+
+
+	//- jQuery
+	script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+
+	//- Bootstrap Core JavaScript
+	script(src='/javascripts/bootstrap.min.js')
+
+	//- Lodash
+	script(src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js')

@@ -1,0 +1,61 @@
+extends layout.pug
+include mixins/Jumbotron.pug
+
+prepend head
+	title  Eng-Base Blog | Stories for Structural Engineering
+	meta(name="description", content="Technology advancements, lessons learned, and insights from other professionals in the built environment.")
+
+append head
+	style.
+		.blog-wrapper blockquote,
+		.blog-wrapper p,
+		.blog-wrapper li {
+			font-family:'Georgia','Open Sans';
+			font-size:20px;
+			font-weight:200;
+			margin-bottom:40px;
+			line-height:35px;
+		}
+
+		.blog-wrapper h1,
+		.blog-wrapper h2,
+		.blog-wrapper h3 {
+			font-family:'Georgia';
+			margin-bottom:30px
+		}
+
+		.blog-wrapper .btn{
+			background:none;
+			border:2px solid grey;
+			font-family:'Garamond';
+
+		}
+
+block content
+	+Jumbotron("The Eng-Base Blog","Stories for structural engineers.","http://greenfieldbridge.otmapgh.org/img/bridge-new2017.jpg")
+	br
+	br
+	.container.blog-wrapper
+		.row
+			.col-md-6.col-md-offset-3
+				each post in postArray
+					.panel.panel-default
+						.panel-body
+							.row
+								.col-md-12
+									if post.feature_image
+										img(src!=post.feature_image style="width:100%;")
+									h2= post.title
+									p
+										b By #{post.author}
+										span(style='color:lightGrey') | 	<em>#{post.date}</em>
+										hr(style="margin-top:-20px")
+									p
+										|#{_.truncate(post.abstract,{'length':140,'omission':' . . . '})}
+										i: a(href='/blog/' + post.path) Read more.
+					hr
+		.row
+			.col-md-6
+				include includes/SubscribeBlurb.pug
+			.col-md-6
+				include includes/SubscribeToMailChimp.html

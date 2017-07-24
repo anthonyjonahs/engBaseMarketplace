@@ -1,0 +1,25 @@
+extends layout.pug
+include mixins/Jumbotron.pug
+include mixins/HomepageCategoryList.pug
+include mixins/FeatureSoftwareCard.pug
+
+prepend head
+	title Structural Engineering Software | Features and Reviews on Eng-Base
+	meta(name="description", content="Pricing, features, and reviews of engineering software - in one place.")
+
+block content
+
+	+Jumbotron("PRICING, FEATURES, AND REVIEWS OF ENGINEERING SOFTWARE - IN ONE PLACE.","Evaluating structural design and analysis software is hard. We have the information you need to find the right tool, and get back to work.",'/images/homepage.png')
+
+	.container#categories
+		+HomepageCategoryList
+
+	hr
+	.container
+		.row
+			.col-md-6
+				include includes/SubscribeBlurb.pug
+			.col-md-6
+				include includes/SubscribeToMailChimp.html
+
+	br

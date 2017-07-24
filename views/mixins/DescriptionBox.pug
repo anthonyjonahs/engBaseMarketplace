@@ -1,0 +1,8 @@
+mixin AboutBox(data)
+	.panel.panel-default
+		.panel-heading 
+			h1.panel-title Description
+		.panel-body
+			.row
+				.col-md-12
+					p:verbatim !{data.software.app_long_description}

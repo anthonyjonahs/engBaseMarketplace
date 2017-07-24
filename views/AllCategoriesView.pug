@@ -1,0 +1,37 @@
+extends layout.pug
+
+prepend head
+	title Structural Engineering Software Categories | Eng-Base
+	meta(name="description", content="View all the structural engineering design software categories and find the right software for you.")
+
+block content
+
+	//- Import tags
+	- var materials=["aluminum","cold-formed steel","concrete","fabric","masonry","steel","timber"]
+	- var building_codes=["europe","india","united kingdom","united states","australia","canada","china","new zealand","south africa","turkey"]
+	- var capabilities=["BIM","FEA","analysis","anchor","beam","bridge","cellular beams","column","composite beam","connection","cross-section analysis","culvert","design","extreme loading","fire","foundation","light framing","pile","pile cap","portal frame","post-tensioning","precast","prestressed","retaining wall","seismic","slab","tilt-up","vibration analysis","wall","cad plug-in","cloud","animated results","cable","modal analysis","non-linear analysis","pipe","oil and gas","composite beams","rehabilitation and retrofit","construction stages","rendered model","section analysis and design","steel detailing","transmission and communication tower"]
+
+	//- Concatenate import tags into one array for list
+	- var localData= materials.concat(building_codes).concat(capabilities).sort()
+
+	//- Alphabet for list
+	- var alphabet='abcdefghijklmnopqrstuvwxyz'.split('');
+
+
+	.container
+		.row
+			.col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-12.col-xs-12
+				.text-center
+					h1 Browse All Software Categories
+					hr
+					h3 Find your software in one of our many categories.
+
+				table.table.table-bordered
+					each letter in alphabet
+						tr.active
+							th <h4 style="text-transform:uppercase">#{letter}</h4>
+						each category in localData
+							- if(_.startsWith(category.toLowerCase(), letter))
+								tr
+									td(style="text-transform:capitalize")
+										a(href="/all-categories/" + _.escape(category)) #{category}

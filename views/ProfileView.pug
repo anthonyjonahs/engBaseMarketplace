@@ -1,0 +1,45 @@
+extends layout.pug
+include mixins/MixinDev.pug
+include mixins/TitleBox.pug
+include mixins/MediaBox.pug
+include mixins/DescriptionBox.pug
+include mixins/SupportAndTrainingBox.pug
+include mixins/PricingAndLicensingBox.pug
+include mixins/BimAndInteroperabilityBox.pug
+include mixins/RatingsAndReviewsBox.pug
+include mixins/CapabilitiesBox.pug
+include mixins/ProfileCTABox.pug
+
+block prepend head
+
+	if _.includes(data.software.app_name.toLowerCase(),"software")
+		title #{data.software.app_name} - #{moment().format("YYYY")} Features, Price, and Reviews
+	else
+		title #{data.software.app_name} Software - #{moment().format("YYYY")} Features, Price, and Reviews
+
+	meta(name="description", content= data.software.app_name + " screenshots, features, reviews and more on Eng-Base. Compare with other analysis and design software, and find the right tool for the job.")
+
+block content
+
+	.container
+		.row
+			.col-md-12
+
+				+TitleBox(data)
+
+				+MediaBox(data)
+
+				+AboutBox(data)
+
+				+CapabilitiesBox(data)
+
+				+PricingAndLicensingBox(data)
+
+				unless data.software.ppc
+					+ProfileCTABox(data)
+
+				+SupportAndTrainingBox(data)
+
+				+BimAndInteroperabilityBox(data)
+
+				+RatingsAndReviewsBox(data)

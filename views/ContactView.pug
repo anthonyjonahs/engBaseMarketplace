@@ -1,0 +1,22 @@
+extends layout.pug
+include mixins/Jumbotron.pug
+include mixins/HomepageCategoryList.pug
+include mixins/HomepageCategoryList.pug
+
+prepend head
+	title Eng-Base - Contact us
+	meta(name="description", content="If you have any questions or feedback, feel free to contact us. We're here to help you!")
+
+block content
+
+	.container
+		.row
+			.col-md-8
+				h1 Contact us.
+				div(style="font-size:18px;text-align: justify;text-justify:inter-word;")
+					p
+						b Email:
+						a(href='mailto:info@eng-base.com') info@eng-base.com
+					p
+						b Phone:
+						| +1(514)895-5131

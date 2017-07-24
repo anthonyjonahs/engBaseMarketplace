@@ -1,0 +1,41 @@
+mixin BimAndInteroperabilityBox(data)
+	.panel.panel-default
+		.panel-heading 
+			h1.panel-title BIM and Interoperability
+		.panel-body
+			.row
+				.col-md-6
+					p <strong>Can import these file formats:</strong>
+					
+					//- if empty display "none"
+					if data.software.import[0]
+						ul
+							each importDetail in data.software.import
+								li #{importDetail.toUpperCase()}
+					else 
+						ul: li(style="color:grey"): b None
+
+					hr
+					
+					p <strong>Can export these file formats:</strong>
+					
+					//- if empty display "none"
+					if data.software.export[0]
+						ul
+							each exportDetail in data.software.export
+								li #{exportDetail.toUpperCase()}
+					else 
+						ul: li(style="color:grey"): b None
+
+					//- if empty special links exist, display this section
+					if data.software.special_links[0]
+						hr
+						p <strong>Special links with:</strong>
+						ul
+								each specialLinksDetail in data.software.special_links
+									li #{specialLinksDetail}
+
+				if data.software.bim_and_interoperability_comment
+					.col-md-6
+						p <strong>A comment from the vendor:</strong>
+						p <em>#{data.software.bim_and_interoperability_comment}</em>

@@ -1,0 +1,10 @@
+
+//- Test mixin
+mixin TitleTest(title)
+	//- Mixin Content
+	h1 #{title}
+
+	//- Appending mixin styling to head of parent view. Note: make sure it doesn't effect other stuff. 
+	block append head 
+		style(text/css).
+			h1 {}

@@ -1,0 +1,58 @@
+//- ---------------------------------------------
+//- Ratings and Reviews Box (profile template)
+//- ---------------------------------------------
+//- To do: design and code the "review this software modal"
+
+mixin RatingsAndReviewsBox(data)
+	.panel.panel-default
+		.panel-heading 
+			h1.panel-title Ratings and Reviews
+		.panel-body
+			
+			.row
+				.col-md-12
+					.btn.btn-primary.center-block(style="width:50%" type="button" data-toggle="modal" data-target="#reviewModal") Submit a Review
+					br
+			
+			if data.software.app_reviews
+				//- Beginning of Reviews
+				each review in data.software.app_reviews
+					.panel.panel-default
+						.panel-heading(style="background:#d3d3d3")
+							h4 #{review.reviewer_name}, #{review.reviewer_position} at #{review.reviewer_organization}
+							p <em>#{review.review_date}</em>
+						.panel-body
+							.row
+								.col-md-3
+									h4(style="") Overall Score: #{review.overall_score}/5
+									h5 Quality: #{review.product_quality_score}/5
+									h5 Functionality: #{review.functionality_score}/5
+									h5 Ease-of-use: #{review.ease_of_use_score}/5
+									h5 Customer support: #{review.customer_support_score}/5
+									hr
+								.col-md-9
+									h5 Pros:
+									p #{review.pros}
+									h5 Cons:
+									p #{review.cons}
+									h5 Advice to other engineers:
+									p #{review.advice_to_other_engineers}
+						if review.answer_from_vendor
+							.panel-footer(style="background:#b4eeb4")
+								h4 Vendor reply:
+								p #{review.answer_from_vendor}
+
+
+	#reviewModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+		.modal-dialog.modal-lg(role='document')
+			.modal-content
+				.modal-header
+					button.close(type='button', data-dismiss='modal', aria-label='Close')
+						span(aria-hidden='true') ×
+					h4#myModalLabel.modal-title Submit a review for #{data.software.app_name}
+				.modal-body
+					.row
+						.col-md-12
+							<script type="text/javascript" src="https://form.jotform.com/jsform/60984676287272"></script>	
+
+

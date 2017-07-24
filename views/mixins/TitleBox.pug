@@ -1,0 +1,37 @@
+//- ===============================================================================
+//- Title Box (profile template)
+//- ===============================================================================
+//- To do: 
+//- 	- restyle button so that it is centered. 
+//- 	- Change "Software other eng. use:" from static to dynamic...eventually. 
+//- ===============================================================================
+
+include PromotedSoftwarePanel.pug
+
+mixin TitleBox(data)
+	
+	br 
+
+	.panel.panel-default(style="border:solid 2px grey")
+		.panel-body
+			.row(style="")
+				//- Vendor Image
+				.col-md-3.col-sm-3
+					img.center-block(
+						src!= data.software.app_logo
+						style="width:70%; margin:auto"
+					)
+				//- Software Name and Vendor Name	
+				.col-md-5.col-sm-5
+					h1 #{data.software.app_name}
+					h4 <em>#{data.company_name}</em>
+				
+				//- Alternate software list
+				unless data.software.ppc
+					.col-md-4.col-sm-4(style='height:auto')
+						+PromotedSoftwarePanel
+
+				//- Go to website Button
+		if data.software.ppc
+			.panel-footer.clearfix
+				a.btn.btn-success.btn-lg.pull-right(id=data.software.app_path + "-prof-webbutton", style=("margin-right:5px;min-width:15%"), href=data.software.go_to_website, target="_blank") Visit Their Website

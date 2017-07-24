@@ -1,0 +1,61 @@
+mixin PricingAndLicensingBox(data)
+	.panel.panel-default
+		.panel-heading
+			h1.panel-title Pricing and Licensing
+		.panel-body
+			.row
+				.col-md-6
+					hr(style="margin:5px 0px 10px 0px")
+
+					p <strong>Starting Price: </strong>
+						| #{(data.software.starting_price[0]) ? data.software.starting_price.join(', ').toUpperCase() : "Not provided."}
+
+					hr(style="margin:5px 0px 10px 0px")
+
+
+					p <strong>Free Trial: </strong>
+						| #{_.capitalize(data.software.free_trial)}
+
+					hr(style="margin:5px 0px 10px 0px")
+
+
+					p <strong>Academic Discount: </strong>
+						| #{_.capitalize(data.software.academic_discount)}
+
+					hr(style="margin:5px 0px 10px 0px")
+
+
+					p <strong>Platform: </strong>
+						| #{(data.software.platform[0]) ? _.capitalize(data.software.platform.join(', ')) : "N/A"}
+
+					hr(style="margin:5px 0px 10px 0px")
+
+					//- only included if this is installed software
+					if _.includes(data.software.platform,"installed")
+						p <strong>Operating System: </strong> #{(data.software.operating_system[0]) ? _.capitalize(data.software.operating_system.join(', ')) : "N/A"}
+
+						hr(style="margin:5px 0px 10px 0px")
+
+
+					p <strong>License Type: </strong>
+						| #{(data.software.license_type[0]) ? _.capitalize(data.software.license_type.join(', ')) : "N/A"}
+
+					hr(style="margin:5px 0px 10px 0px")
+
+
+					p <strong>License term: </strong>
+						| #{(data.software.license_term[0]) ? _.capitalize(data.software.license_term.join(', ')) : "N/A"}
+
+					hr(style="margin:5px 0px 10px 0px")
+
+					p <strong>Subscription Period: </strong>
+						| #{(data.software.subscription_period[0]) ? _.capitalize(data.software.subscription_period.join(', ')) : "N/A"}
+
+					hr(style="margin:5px 0px 10px 0px")
+
+
+				if data.software.pricing_and_licensing_comment
+					.col-md-6
+						p <strong>A comment from the vendor:</strong>
+						p
+							em #{data.software.pricing_and_licensing_comment}

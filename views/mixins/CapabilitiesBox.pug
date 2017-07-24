@@ -1,0 +1,32 @@
+mixin CapabilitiesBox(data)
+				.panel.panel-default
+						.panel-heading 
+							h1.panel-title Capabilities
+						.panel-body
+							.row
+								.col-md-6
+									hr(style="margin:5px 0px 10px 0px")
+
+									//- check if materials were specified
+									if data.software.materials[0]
+										p <strong>Materials: </strong> #{_.capitalize(data.software.materials.join(', '))}.
+
+										hr(style="margin:5px 0px 10px 0px")
+
+									//- check if building codes were specified
+									if data.software.building_codes[0]
+										p <strong>Building Codes: </strong> <span style="text-transform:capitalize;">#{data.software.building_codes.join(', ')}.</span>
+
+										hr(style="margin:5px 0px 10px 0px")
+
+									p <strong>Capabilities: </strong> #{_.capitalize(data.software.capabilities.join(', '))}.
+
+									hr(style="margin:5px 0px 10px 0px")
+
+
+								if data.software.capabilities_comment
+									.col-md-6
+										p <strong>A comment from the vendor:</strong>
+										p 
+											<em>#{data.software.capabilities_comment}</em>
+								

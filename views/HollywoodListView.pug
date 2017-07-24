@@ -1,0 +1,41 @@
+extends layout.pug
+
+include mixins/ListTitle/HeadTitleTag.pug
+include mixins/ListTitle/HollywoodListTitle.pug
+include mixins/ListTitle/ListTitle.pug
+include mixins/ListBox.pug
+
+//- Set html title of page
+block title
+	//- Manually set the title for html <title> and ListTitle component
+	case softwareCategory
+		when "3d-design-and-analysis-software"
+			- var softwareCategoryProperCase = "3D Design and Analysis Software"
+			- break;
+		when "steel-detailing-and-connections-design-software"
+			- var softwareCategoryProperCase = "Steel Detailing and Connections Design Software"
+			- break;
+		when "foundation-pile-and-retaining-wall-design-software"
+			- var softwareCategoryProperCase = "Foundation, Pile, and Retaining Wall Design Software"
+			- break;
+		when "foundation-pile-and-retaining-wall-design-software"
+			- var softwareCategoryProperCase = "Foundation, Pile, and Retaining Wall Design Software"
+			- break;
+		when "bim-design-software"
+			- var softwareCategoryProperCase = "BIM Design Software"
+			- break;
+		default
+			- var softwareCategoryProperCase = _.startCase(softwareCategory)
+
+	//- Output the title
+	title Best #{softwareCategoryProperCase} #{moment().format('YYYY')}
+	meta(name="description", content="Find the best " + softwareCategoryProperCase + " for your projects. Price, features, and reviews from other engineers.")
+
+block content
+
+	.container
+		+HollywoodListTitle(softwareCategoryProperCase)
+		hr
+		.col-md-12
+			each vendor in vendorsWithTag
+					+ListBox(vendor)

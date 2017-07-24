@@ -1,0 +1,26 @@
+//- --------------------------------
+//- Support and Training Box (profile template)
+//- --------------------------------
+//- To do: Nothing.
+
+mixin SupportAndTrainingBox(data)
+	.panel.panel-default
+		.panel-heading 
+			h1.panel-title Support and Training
+		.panel-body
+			.row
+				.col-md-6
+					p <strong>Support:</strong>
+					ul
+						each supportDetail in data.software.support
+							li #{supportDetail}
+						
+					hr
+					p <strong>Training:</strong>
+					ul
+						each trainingDetail in data.software.training
+							li #{trainingDetail}
+				if data.software.support_and_training_comment
+					.col-md-6
+						p <strong>A comment from the vendor:</strong>
+						p <em>#{data.software.support_and_training_comment}</em>
